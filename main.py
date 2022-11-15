@@ -10,7 +10,7 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
-
+# add cors middleware
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -28,7 +28,7 @@ class DataUrl(BaseModel):
 async def root():
     return "Welcome to Maca api"
 
-
+# Api to upload csv file
 @app.post("/upload")
 def upload(defaulturl: DataUrl):
     df = pandas.read_csv(defaulturl.url,sep=',')
@@ -36,9 +36,10 @@ def upload(defaulturl: DataUrl):
     df.to_json(jsonoutput,indent=1,orient='records')
     f = open('output.json')
     data = json.load(f)
-    print(type(data))
     return data
 
+
+# Api to upload excel file
 @app.post("/uploadexcel")
 def upload_excel(defaulturl: DataUrl):
     jsonoutput="outputexcel.json"
