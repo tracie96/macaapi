@@ -11,6 +11,7 @@ excel2json-3==0.1.6
 exceptiongroup==1.0.4
 fastapi==0.85.1
 Flask==1.1.2
+gunicorn==20.1.0
 h11==0.12.0
 hestia-earth-schema==6.13.0
 hestia-earth-utils==0.10.3
